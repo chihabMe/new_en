@@ -1,0 +1,34 @@
+{
+  "questions": [
+    {
+      "id": "installation",
+      "question": "HOW DO I INSTALL MY SUBSCRIPTION?",
+      "answer": "After payment for your subscription, a WhatsApp message or confirmation email with your access information and activation instructions will be sent to you."
+    },
+    {
+      "id": "compatible",
+      "question": "IS IT COMPATIBLE WITH MY DEVICE?",
+      "answer": "Our streaming service is accessible on all devices."
+    },
+    {
+      "id": "devices",
+      "question": "HOW MANY DEVICES CAN I USE?",
+      "answer": "Subscribers to our service can use 1 device at a time."
+    },
+    {
+      "id": "trial",
+      "question": "DO YOU OFFER A FREE TRIAL?",
+      "answer": "Yes, we offer a 1-day free trial on all our plans. You can test all features before your subscription begins. No charges will be made before the trial period ends."
+    },
+    {
+      "id": "activation",
+      "question": "HOW DO I ACTIVATE MY SUBSCRIPTION?",
+      "answer": "Once payment is confirmed, a WhatsApp message or email will be sent within the hour."
+    },
+    {
+      "id": "support",
+      "question": "HOW CAN I GET ANSWERS TO MY QUESTIONS?",
+      "answer": "Please contact us via WhatsApp or email: support@abonix.com"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "plans": [
+    {
+      "id": "Free-Trial",
+      "name": "Free Trial",
+      "price": 0,
+      "period": "1h ",
+      "description": "Limited access for 1 hour",
+      "features": [
+        "HD Streaming",
+        "Diverse Content",
+        "Intuitive Interface",
+        "Technical Support",
+        "Wide Compatibility",
+        "Automatic Updates",
+        "Quick Access"
+      ],
+      "highlighted": false,
+      "cta": "Try for Free"
+    },
+    {
+      "id": "Standard",
+      "name": "Standard",
+      "price": 34.99,
+      "period": "12 months",
+      "description": "12 months ",
+      "features": [
+        "HD & 4K Streaming",
+        "Content Library",
+        "User Interface",
+        "Technical Support",
+        "Wide Compatibility",
+        "Automatic Updates",
+        "Fast Navigation",
+        "30-day Guarantee"
+      ],
+      "highlighted": false,
+      "cta": "Go Standard"
+    },
+    {
+      "id": "premium-pricing",
+      "name": "Premium",
+      "price": 49.99,
+      "period": "12 months",
+      "description": "12 months ",
+      "features": [
+        "Extended Premium Content",
+        "Resolutions: SD, HD, Full HD, 4K",
+        "Programming Guide",
+        "Replay Access Available",
+        "Integrated Streaming Services",
+        "Automatic Updates",
+        "Enhanced Security",
+        "30-day Guarantee"
+      ],
+      "highlighted": true,
+      "cta": "Go Premium"
+    }
+  ]
+}
