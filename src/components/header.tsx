@@ -23,7 +23,7 @@ export default function Header() {
           {/* Logo */}
           <div className="flex-shrink-0">
             <div className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-              Abonix
+              Flynix
             </div>
           </div>
 

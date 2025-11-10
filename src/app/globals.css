@@ -14,7 +14,7 @@ section[id] {
 }
 
 :root {
-  /* Updated color palette for Abonix - Blue/Purple theme */
+  /* Updated color palette for Flynix - Blue/Purple theme */
   --background: oklch(0.08 0 0);
   --foreground: oklch(0.98 0 0);
   --card: oklch(0.12 0 0);

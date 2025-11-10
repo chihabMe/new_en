@@ -96,8 +96,8 @@ export default function ContactPage() {
       title: "Support Email",
       description:
         "Envoyez-nous un email détaillé et recevez une réponse dans les 2 heures",
-      action: "support@abonix.com",
-      link: "mailto:support@abonix.com",
+      action: "support@flynix.com",
+      link: "mailto:support@flynix.com",
       gradient: "from-purple-500 to-pink-500",
     },
     {

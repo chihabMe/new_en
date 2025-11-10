@@ -15,7 +15,7 @@ export default function FAQ() {
             Frequently Asked Questions
           </h2>
           <p className="text-xl text-muted-foreground">
-            Find answers to common questions about Abonix
+            Find answers to common questions about Flynix
           </p>
         </div>
 

@@ -1,4 +1,4 @@
-# Abonix - Premium Streaming Platform
+# Flynix - Premium Streaming Platform
 
 A modern, high-performance streaming platform built with Next.js, featuring premium content delivery, user authentication, and subscription management.
 
@@ -32,5 +32,7 @@ A modern, high-performance streaming platform built with Next.js, featuring prem
 ## License
 
 Private project - All rights reserved.
+
 # new_en
+
 # new_en

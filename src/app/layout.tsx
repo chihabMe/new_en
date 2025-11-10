@@ -6,7 +6,7 @@ import Providers from "@/components/Providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Abonix - Divertissement Premium",
+  title: "Flynix - Divertissement Premium",
   description:
     "Service de divertissement premium avec des milliers de contenus et de médias",
   generator: "v0.app",

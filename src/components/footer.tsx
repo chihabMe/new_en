@@ -8,7 +8,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent mb-4">
-              Abonix
+              Flynix
             </div>
             <p className="text-muted-foreground text-sm">
               Premium entertainment service with thousands of content and media.
@@ -156,7 +156,7 @@ export default function Footer() {
 
             {/* Copyright */}
             <div className="text-sm text-muted-foreground">
-              © 2025 Abonix. All rights reserved.
+              © 2025 Flynix. All rights reserved.
             </div>
           </div>
         </div>

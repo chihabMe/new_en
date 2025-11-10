@@ -5,7 +5,7 @@ const testimonials = [
     name: "Jean Dupont",
     role: "Membre Premium",
     content:
-      "Abonix a complètement changé ma façon de regarder des contenus. La qualité est incroyable et le service est si fiable!",
+      "Flynix a complètement changé ma façon de regarder des contenus. La qualité est incroyable et le service est si fiable!",
     rating: 5,
     avatar: "/user-avatar-1.png",
   },

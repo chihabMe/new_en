@@ -62,7 +62,7 @@ Your endpoint will receive these headers:
 
 ```
 Content-Type: application/json
-User-Agent: Abonix-Webhook/1.0
+User-Agent: Flynix-Webhook/1.0
 X-Webhook-Secret: your-webhook-secret-key (if configured)
 ```
 

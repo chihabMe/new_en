@@ -62,7 +62,7 @@ export class WebhookService {
 
       const headers: Record<string, string> = {
         "Content-Type": "application/json",
-        "User-Agent": "Abonix-Webhook/1.0",
+        "User-Agent": "Flynix-Webhook/1.0",
       };
 
       // Add webhook secret if configured
@@ -130,7 +130,7 @@ export class WebhookService {
 
       const headers: Record<string, string> = {
         "Content-Type": "application/json",
-        "User-Agent": "Abonix-Webhook/1.0",
+        "User-Agent": "Flynix-Webhook/1.0",
       };
 
       // Add webhook secret if configured
