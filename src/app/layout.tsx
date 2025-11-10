@@ -3,12 +3,13 @@ import Script from "next/script";
 import type { Metadata } from "next";
 import ConditionalAnalytics from "@/components/ConditionalAnalytics";
 import Providers from "@/components/Providers";
+import { LocaleProvider } from "@/hooks/useLocale";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Flynix - Divertissement Premium",
+  title: "Flynix - Premium Streaming Platform",
   description:
-    "Service de divertissement premium avec des milliers de contenus et de médias",
+    "Premium streaming service with thousands of movies and TV shows",
   generator: "v0.app",
 };
 
@@ -18,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="en">
       <body className={`font-sans antialiased`}>
         {/* Google Ads Global Tag - Load First */}
         <Script
@@ -34,7 +35,9 @@ export default function RootLayout({
           `}
         </Script>
 
-        <Providers>{children}</Providers>
+        <Providers>
+          <LocaleProvider>{children}</LocaleProvider>
+        </Providers>
         <ConditionalAnalytics />
       </body>
     </html>

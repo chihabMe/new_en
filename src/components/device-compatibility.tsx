@@ -1,24 +1,29 @@
-import { Tv, Smartphone, Tablet, Monitor, Zap } from "lucide-react";
+"use client";
 
-const devices = [
-  { icon: Tv, name: "Smart TV", description: "LG, Samsung, Sony, and more" },
-  { icon: Smartphone, name: "Android", description: "All Android devices" },
-  { icon: Smartphone, name: "iOS", description: "iPhone and iPad" },
-  { icon: Monitor, name: "PC/Mac", description: "Windows and macOS" },
-  { icon: Zap, name: "Firestick", description: "Amazon Fire devices" },
-  { icon: Tablet, name: "Tablets", description: "All tablet devices" },
-];
+import { Tv, Smartphone, Tablet, Monitor, Zap } from "lucide-react";
+import { useLocale } from "@/hooks/useLocale";
 
 export default function DeviceCompatibility() {
+  const { t, locale } = useLocale();
+  
+  const devices = [
+    { icon: Tv, name: t("smartTV"), description: locale === 'en' ? "LG, Samsung, Sony, and more" : "LG, Samsung, Sony, et plus" },
+    { icon: Smartphone, name: t("android"), description: locale === 'en' ? "All Android devices" : "Tous les appareils Android" },
+    { icon: Smartphone, name: t("iOS"), description: locale === 'en' ? "iPhone and iPad" : "iPhone et iPad" },
+    { icon: Monitor, name: "PC/Mac", description: locale === 'en' ? "Windows and macOS" : "Windows et macOS" },
+    { icon: Zap, name: "Firestick", description: locale === 'en' ? "Amazon Fire devices" : "Appareils Amazon Fire" },
+    { icon: Tablet, name: locale === 'en' ? "Tablets" : "Tablettes", description: locale === 'en' ? "All tablet devices" : "Tous les appareils tablettes" },
+  ];
+  
   return (
     <section className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Access on All Devices
+            {t("devicesTitle")}
           </h2>
           <p className="text-xl text-muted-foreground">
-            Anytime, Anywhere — Your Entertainment Follows You
+            {t("devicesSubtitle")}
           </p>
         </div>
 

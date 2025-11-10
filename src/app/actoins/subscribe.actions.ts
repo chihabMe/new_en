@@ -6,34 +6,35 @@ import { prisma } from "@/lib/db";
 import { getClientCountry } from "@/lib/ip-tools";
 import { revalidatePath } from "next/cache";
 import { WebhookService } from "@/lib/webhook";
+import { t } from "@/lib/i18n";
 
-const subscribeSchema = z.object({
-  fullName: z
-    .string()
-    .min(2, { message: "Le nom doit contenir au moins 2 caractères." }),
-  email: z
-    .string()
-    .email({ message: "Veuillez entrer une adresse email valide." }),
-  phoneNumber: z
-    .string()
-    .min(10, { message: "Veuillez entrer un numéro de téléphone valide." }),
-  planName: z.string(),
-  duration: z.string(),
-  price: z.string(),
-});
+// Function to create localized schema
+function createSubscribeSchema(locale: "en" | "fr") {
+  return z.object({
+    fullName: z.string().min(2, { message: t("requiredField", locale) }),
+    email: z.string().email({ message: t("invalidEmail", locale) }),
+    phoneNumber: z.string().min(10, { message: t("invalidPhone", locale) }),
+    planName: z.string(),
+    duration: z.string(),
+    price: z.string(),
+    locale: z.enum(["en", "fr"]).default("en"),
+  });
+}
 
-// const contactSchema = z.object({
-//   fullName: z.string().min(2, { message: "Le nom doit contenir au moins 2 caractères." }),
-//   email: z.string().email({ message: "Veuillez entrer une adresse email valide." }),
-//   phoneNumber: z.string().optional(),
-//   subject: z.string().optional(),
-//   message: z.string().min(10, { message: "Le message doit contenir au moins 10 caractères." }),
-// });
-//
 export const subscribeActions = publicActionsClient
-  .schema(subscribeSchema)
+  .schema(
+    z.object({
+      fullName: z.string().min(2),
+      email: z.string().email(),
+      phoneNumber: z.string().min(10),
+      planName: z.string(),
+      duration: z.string(),
+      price: z.string(),
+      locale: z.enum(["en", "fr"]).default("en"),
+    })
+  )
   .action(async ({ parsedInput }) => {
-    const { fullName, email, phoneNumber, planName, duration, price } =
+    const { fullName, email, phoneNumber, planName, duration, price, locale } =
       parsedInput;
 
     try {
@@ -206,14 +207,13 @@ export const subscribeActions = publicActionsClient
 
       return {
         status: "success",
-        message: `Merci ${fullName}, vous êtes maintenant abonné à notre service ! Numéro de commande: #${orderId}`,
+        message: t("subscriptionSuccess", locale, { fullName, orderId }),
       };
     } catch (error) {
       console.error("Error processing subscription:", error);
       return {
         status: "error",
-        message:
-          "Une erreur s'est produite lors du traitement de votre commande. Veuillez réessayer.",
+        message: t("subscriptionError", locale),
       };
     }
   });

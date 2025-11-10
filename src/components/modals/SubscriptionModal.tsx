@@ -25,6 +25,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { PricingPlan } from "../sections/pricing/PricingSection";
 import { whatsupNumber } from "@/constants";
 import { subscribeActions } from "@/app/actoins/subscribe.actions";
+import { useLocale } from "@/hooks/useLocale";
 
 // TypeScript declaration for gtag
 declare global {
@@ -65,6 +66,7 @@ const SubscriptionModal = ({
   const [userEmail, setUserEmail] = useState("");
   const [whatsAppMessage, setWhatsAppMessage] = useState("");
   const { toast } = useToast();
+  const { t, locale } = useLocale();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(subscribeSchema),
@@ -75,7 +77,17 @@ const SubscriptionModal = ({
     setIsSubmitting(true);
     setUserEmail(data.email);
 
-    const message = `Hello, my name is ${data.fullName}. \nI would like to subscribe to the *${plan.name}* plan (${plan.period}) for *$${plan.price}*. \nMy email: ${data.email} \nMy phone: ${data.phoneNumber}`;
+    const currencySymbol = locale === 'en' ? '£' : '€';
+    const priceWithCurrency = locale === 'en' ? `${plan.price}` : `${plan.price}`;
+    
+    const message = t("whatsappSubscription", {
+      planName: plan.name,
+      duration: plan.period,
+      price: priceWithCurrency,
+      fullName: data.fullName,
+      email: data.email,
+      phone: data.phoneNumber
+    });
     setWhatsAppMessage(message);
 
     try {
@@ -84,6 +96,7 @@ const SubscriptionModal = ({
         planName: plan.name,
         duration: plan.period,
         price: plan.price.toString(),
+        locale: locale,
       });
 
       if (response?.data?.status !== "success")
@@ -96,8 +109,8 @@ const SubscriptionModal = ({
         window.gtag("event", "conversion", {
           send_to: "AW-17659093090/on26CKCQxrobEOLAweRB",
           transaction_id: transactionId,
-          value: parseFloat(plan.price),
-          currency: "EUR",
+          value: parseFloat(plan.price.toString()),
+          currency: locale === 'en' ? "GBP" : "EUR",
           email: data.email,
           phone_number: data.phoneNumber,
         });

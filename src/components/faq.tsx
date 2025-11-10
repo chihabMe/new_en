@@ -3,19 +3,21 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import faqData from "@/data/faq.json";
+import { useLocale } from "@/hooks/useLocale";
 
 export default function FAQ() {
   const [openId, setOpenId] = useState<number | null>(0);
+  const { t } = useLocale();
 
   return (
     <section className="py-20 bg-background">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Frequently Asked Questions
+            {t("faqTitle")}
           </h2>
           <p className="text-xl text-muted-foreground">
-            Find answers to common questions about Flynix
+            {t("faqSubtitle")}
           </p>
         </div>
 

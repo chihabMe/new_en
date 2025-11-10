@@ -3,10 +3,16 @@
 import { Button } from "@/components/ui/button";
 import { Play, Zap } from "lucide-react";
 import Image from "next/image";
+import { useLocale } from "@/hooks/useLocale";
 
 export default function Hero() {
+  const { t } = useLocale();
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -29,15 +35,14 @@ export default function Hero() {
               {/* Free Trial Highlight Badge */}
               <div className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-500/30 rounded-full px-4 py-2 text-sm font-medium text-blue-400 backdrop-blur-sm">
                 <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-                <span>🚀 Free 1-hour trial available</span>
+                <span>{t("freeTrialBadge")}</span>
               </div>
 
               <h1 className="text-5xl md:text-6xl font-bold text-balance leading-tight">
-                Discover Premium Entertainment in 4K
+                {t("heroTitle")}
               </h1>
               <p className="text-xl text-muted-foreground text-balance">
-                Enjoy ultra-fast service, 99.9% uptime, and 24/7 support — 
-                anywhere, anytime.
+                {t("heroSubtitle")}
               </p>
             </div>
 
@@ -61,7 +66,7 @@ export default function Hero() {
                 }}
               >
                 <Play size={20} />
-                <span>Start Free Trial</span>
+                <span>{t("startFreeTrial")}</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
               </Button>
               <Button
@@ -75,7 +80,7 @@ export default function Hero() {
                 }
               >
                 <Zap size={20} />
-                View Plans
+                {t("learnMore")}
               </Button>
             </div>
 

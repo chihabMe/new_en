@@ -1,6 +1,11 @@
+"use client";
+
 import { Facebook, Twitter, Instagram, Youtube } from "lucide-react";
+import { useLocale } from "@/hooks/useLocale";
 
 export default function Footer() {
+  const { t, locale } = useLocale();
+  
   return (
     <footer className="bg-card border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -11,20 +16,20 @@ export default function Footer() {
               Flynix
             </div>
             <p className="text-muted-foreground text-sm">
-              Premium entertainment service with thousands of content and media.
+              {t("siteDescription")}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <h4 className="font-semibold mb-4">{locale === 'en' ? 'Quick Links' : 'Liens Rapides'}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <a
                   href="#home"
                   className="hover:text-foreground transition-colors"
                 >
-                  Home
+                  {t("home")}
                 </a>
               </li>
               <li>
@@ -32,7 +37,7 @@ export default function Footer() {
                   href="#content"
                   className="hover:text-foreground transition-colors"
                 >
-                  Content
+                  {locale === 'en' ? 'Content' : 'Contenu'}
                 </a>
               </li>
               <li>
@@ -40,7 +45,7 @@ export default function Footer() {
                   href="#pricing"
                   className="hover:text-foreground transition-colors"
                 >
-                  Pricing
+                  {t("pricing")}
                 </a>
               </li>
               <li>
@@ -56,14 +61,14 @@ export default function Footer() {
 
           {/* Support */}
           <div>
-            <h4 className="font-semibold mb-4">Support</h4>
+            <h4 className="font-semibold mb-4">{locale === 'en' ? 'Support' : 'Support'}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <a
                   href="#contact"
                   className="hover:text-foreground transition-colors"
                 >
-                  Contact Us
+                  {t("contact")} Us
                 </a>
               </li>
               <li>
@@ -156,7 +161,7 @@ export default function Footer() {
 
             {/* Copyright */}
             <div className="text-sm text-muted-foreground">
-              © 2025 Flynix. All rights reserved.
+              {t("copyright")}
             </div>
           </div>
         </div>

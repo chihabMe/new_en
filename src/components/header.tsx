@@ -3,18 +3,37 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLocale } from "@/hooks/useLocale";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { getLocalizedPathname, getPathnameWithoutLocale } from "@/lib/i18n";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { t, locale } = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const navLinks = [
-    { name: "Home", href: "home" },
-    { name: "Content", href: "content" },
-    { name: "Features", href: "features" },
-    { name: "Pricing", href: "pricing" },
-    { name: "FAQ", href: "faq" },
-    { name: "Contact", href: "contact" },
+    { name: t("home"), href: "#home" },
+    { name: t("features"), href: "#features" },
+    { name: t("pricing"), href: "#pricing" },
+    { name: "FAQ", href: "#faq" },
+    { name: t("contact"), href: getLocalizedPathname("/contact", locale) },
   ];
+
+  const scrollToSection = (href: string) => {
+    if (href.startsWith("#")) {
+      const element = document.getElementById(href.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        setIsOpen(false);
+      }
+    } else {
+      router.push(href);
+      setIsOpen(false);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
@@ -30,14 +49,15 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <button
                 key={link.name}
-                href={`#${link.href}`}
+                onClick={() => scrollToSection(link.href)}
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               >
                 {link.name}
-              </a>
+              </button>
             ))}
+            <LanguageSwitcher />
           </nav>
 
           {/* Desktop Buttons */}

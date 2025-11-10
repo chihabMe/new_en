@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import pricingData from "@/data/pricing.json";
 import SubscriptionModal from "@/components/modals/SubscriptionModal";
+import { useLocale } from "@/hooks/useLocale";
 
 interface PricingPlan {
   id: string;
@@ -14,26 +15,52 @@ interface PricingPlan {
   features: string[];
   highlighted: boolean;
   cta: string;
+  currency?: string;
 }
 
 export default function Pricing() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<PricingPlan | null>(null);
+  const { t, locale } = useLocale();
 
   const handleSubscribe = (plan: PricingPlan) => {
-    setSelectedPlan(plan);
+    // Create a localized plan with the correct price
+    const localizedPlan = {
+      ...plan,
+      price: getLocalizedPriceValue(plan.price),
+      currency: locale === 'en' ? 'GBP' : 'EUR'
+    };
+    setSelectedPlan(localizedPlan);
     setIsModalOpen(true);
   };
 
+  // Get currency and price based on locale
+  const getCurrencySymbol = () => locale === 'en' ? '£' : '€';
+  
+  const getLocalizedPriceValue = (price: string | number): number => {
+    if (typeof price === "number" && price === 0) return 0;
+    const numPrice = typeof price === 'string' ? parseFloat(price) : price;
+    return locale === 'en' ? Math.round(numPrice * 0.85 * 100) / 100 : numPrice;
+  };
+  
+  const getLocalizedPrice = (price: string | number) => {
+    if (typeof price === "number" && price === 0) {
+      return locale === 'en' ? 'Free' : 'Gratuit';
+    }
+    
+    const convertedPrice = getLocalizedPriceValue(price);
+    return `${getCurrencySymbol()}${convertedPrice}`;
+  };
+
   return (
-    <section id="ultimate-pricing" className="py-20 bg-card/50">
+    <section id="pricing" className="py-20 bg-card/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Simple and Transparent Pricing
+            {t("pricingTitle")}
           </h2>
           <p className="text-xl text-muted-foreground">
-            Choose the plan that suits you best
+            {t("pricingSubtitle")}
           </p>
         </div>
 
@@ -58,9 +85,7 @@ export default function Pricing() {
                 <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
                 <div className="flex items-baseline gap-1">
                   <span className="text-4xl font-bold">
-                    {typeof plan.price === "number" && plan.price === 0
-                      ? "Gratuit"
-                      : `€${plan.price}`}
+                    {getLocalizedPrice(plan.price)}
                   </span>
                   <span className="text-muted-foreground">/{plan.period}</span>
                 </div>
