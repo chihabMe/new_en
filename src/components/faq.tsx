@@ -16,9 +16,7 @@ export default function FAQ() {
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             {t("faqTitle")}
           </h2>
-          <p className="text-xl text-muted-foreground">
-            {t("faqSubtitle")}
-          </p>
+          <p className="text-xl text-muted-foreground">{t("faqSubtitle")}</p>
         </div>
 
         <div className="space-y-4">

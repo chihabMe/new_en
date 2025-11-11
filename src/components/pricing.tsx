@@ -28,26 +28,26 @@ export default function Pricing() {
     const localizedPlan = {
       ...plan,
       price: getLocalizedPriceValue(plan.price),
-      currency: locale === 'en' ? 'GBP' : 'EUR'
+      currency: locale === "en" ? "GBP" : "EUR",
     };
     setSelectedPlan(localizedPlan);
     setIsModalOpen(true);
   };
 
   // Get currency and price based on locale
-  const getCurrencySymbol = () => locale === 'en' ? '£' : '€';
-  
+  const getCurrencySymbol = () => (locale === "en" ? "£" : "€");
+
   const getLocalizedPriceValue = (price: string | number): number => {
     if (typeof price === "number" && price === 0) return 0;
-    const numPrice = typeof price === 'string' ? parseFloat(price) : price;
-    return locale === 'en' ? Math.round(numPrice * 0.85 * 100) / 100 : numPrice;
+    const numPrice = typeof price === "string" ? parseFloat(price) : price;
+    return locale === "en" ? Math.round(numPrice * 0.85 * 100) / 100 : numPrice;
   };
-  
+
   const getLocalizedPrice = (price: string | number) => {
     if (typeof price === "number" && price === 0) {
-      return locale === 'en' ? 'Free' : 'Gratuit';
+      return locale === "en" ? "Free" : "Gratuit";
     }
-    
+
     const convertedPrice = getLocalizedPriceValue(price);
     return `${getCurrencySymbol()}${convertedPrice}`;
   };

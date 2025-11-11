@@ -77,16 +77,17 @@ const SubscriptionModal = ({
     setIsSubmitting(true);
     setUserEmail(data.email);
 
-    const currencySymbol = locale === 'en' ? '£' : '€';
-    const priceWithCurrency = locale === 'en' ? `${plan.price}` : `${plan.price}`;
-    
+    const currencySymbol = locale === "en" ? "£" : "€";
+    const priceWithCurrency =
+      locale === "en" ? `${plan.price}` : `${plan.price}`;
+
     const message = t("whatsappSubscription", {
       planName: plan.name,
       duration: plan.period,
       price: priceWithCurrency,
       fullName: data.fullName,
       email: data.email,
-      phone: data.phoneNumber
+      phone: data.phoneNumber,
     });
     setWhatsAppMessage(message);
 
@@ -110,7 +111,7 @@ const SubscriptionModal = ({
           send_to: "AW-17659093090/on26CKCQxrobEOLAweRB",
           transaction_id: transactionId,
           value: parseFloat(plan.price.toString()),
-          currency: locale === 'en' ? "GBP" : "EUR",
+          currency: locale === "en" ? "GBP" : "EUR",
           email: data.email,
           phone_number: data.phoneNumber,
         });
