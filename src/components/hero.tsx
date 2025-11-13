@@ -89,7 +89,7 @@ export default function Hero() {
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
                 <span className="text-sm text-muted-foreground font-medium">
-                  7 days free
+                  1 hour free
                 </span>
               </div>
               <div className="flex items-center gap-2">
