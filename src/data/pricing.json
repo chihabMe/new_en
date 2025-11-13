@@ -30,7 +30,7 @@
       },
       "period": "12 months",
       "description": "12 months ",
-      "features": [
+      "features": [$49.99
         "HD & 4K Streaming",
         "Content Library",
         "User Interface",
@@ -47,7 +47,7 @@
       "id": "premium-pricing",
       "name": "Premium",
       "price": {
-        "GBP": 55,
+        "GBP": 44.99,
         "EUR": 49.99
       },
       "period": "12 months",
