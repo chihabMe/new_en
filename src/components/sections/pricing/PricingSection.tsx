@@ -7,7 +7,7 @@ import { fadeIn, staggerContainer } from "@/lib/motions";
 export interface PricingPlan {
   id: string;
   name: string;
-  price: number;
+  price: number | { GBP: number; EUR: number };
   period: string;
   description: string;
   features: string[];

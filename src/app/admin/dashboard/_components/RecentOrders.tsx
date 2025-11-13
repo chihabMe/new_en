@@ -1,4 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -12,6 +18,7 @@ import { Package } from "lucide-react";
 import { getOrders } from "@/app/actoins/admin-actions";
 import Link from "next/link";
 import { OrdersTableActions } from "../orders/_components/OrdersTableActions";
+import { getCurrencySymbol } from "@/lib/currency";
 
 export async function RecentOrders() {
   const { orders } = await getOrders(1, 5);
@@ -21,14 +28,10 @@ export async function RecentOrders() {
       <CardHeader className="flex flex-row items-center justify-between">
         <div>
           <CardTitle>Commandes récentes</CardTitle>
-          <CardDescription>
-            Les 5 dernières commandes reçues
-          </CardDescription>
+          <CardDescription>Les 5 dernières commandes reçues</CardDescription>
         </div>
         <Button variant="outline" size="sm" asChild>
-          <Link href="/admin/orders">
-            Voir tout
-          </Link>
+          <Link href="/admin/orders">Voir tout</Link>
         </Button>
       </CardHeader>
       <CardContent>
@@ -53,17 +56,22 @@ export async function RecentOrders() {
                 <TableRow key={order.id}>
                   <TableCell>
                     <div className="font-medium">{order.fullName}</div>
-                    <div className="text-sm text-muted-foreground">{order.email}</div>
+                    <div className="text-sm text-muted-foreground">
+                      {order.email}
+                    </div>
                   </TableCell>
                   <TableCell>
                     {order.planName} ({order.duration})
                   </TableCell>
-                  <TableCell>{order.price}€</TableCell>
                   <TableCell>
-                    {new Date(order.createdAt).toLocaleDateString('fr-FR', {
-                      day: 'numeric',
-                      month: 'short',
-                      year: 'numeric'
+                    {order.price}
+                    {getCurrencySymbol("fr")}
+                  </TableCell>
+                  <TableCell>
+                    {new Date(order.createdAt).toLocaleDateString("fr-FR", {
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric",
                     })}
                   </TableCell>
                   <TableCell className="text-right">

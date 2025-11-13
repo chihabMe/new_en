@@ -6,6 +6,8 @@ import { fadeIn } from "@/lib/motions";
 import { PricingPlan } from "./PricingSection";
 import SubscribeModal from "@/components/modals/SubscriptionModal";
 import { useState } from "react";
+import { useLocale } from "@/hooks/useLocale";
+import { getCurrencySymbol, getPriceForLocale } from "@/lib/currency";
 
 interface PricingCardProps {
   plan: PricingPlan;
@@ -13,6 +15,10 @@ interface PricingCardProps {
 
 const PricingCard = ({ plan }: PricingCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { locale } = useLocale();
+
+  const localizedPrice = getPriceForLocale(plan.price, locale);
+  const currencySymbol = getCurrencySymbol(locale);
 
   return (
     <motion.div
@@ -49,9 +55,9 @@ const PricingCard = ({ plan }: PricingCardProps) => {
       <div className="text-center mb-8">
         <div className="flex items-baseline justify-center">
           <span className="text-5xl font-extrabold text-white">
-            {plan.price}
+            {localizedPrice}
           </span>
-          <span className="text-xl text-white/80 ml-1">€</span>
+          <span className="text-xl text-white/80 ml-1">{currencySymbol}</span>
         </div>
         <p className="text-white/60 text-sm mt-2">{plan.period}</p>
       </div>

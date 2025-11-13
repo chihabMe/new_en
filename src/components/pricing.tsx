@@ -5,11 +5,16 @@ import { Check } from "lucide-react";
 import pricingData from "@/data/pricing.json";
 import SubscriptionModal from "@/components/modals/SubscriptionModal";
 import { useLocale } from "@/hooks/useLocale";
+import {
+  getCurrencySymbol,
+  getPriceForLocale,
+  getCurrencyForLocale,
+} from "@/lib/currency";
 
 interface PricingPlan {
   id: string;
   name: string;
-  price: string | number;
+  price: number | { GBP: number; EUR: number };
   period: string;
   description: string;
   features: string[];
@@ -28,28 +33,29 @@ export default function Pricing() {
     const localizedPlan = {
       ...plan,
       price: getLocalizedPriceValue(plan.price),
-      currency: locale === "en" ? "GBP" : "EUR",
+      currency: getCurrencyForLocale(locale),
     };
     setSelectedPlan(localizedPlan);
     setIsModalOpen(true);
   };
 
-  // Get currency and price based on locale
-  const getCurrencySymbol = () => (locale === "en" ? "£" : "€");
+  // Get currency symbol based on locale
+  const getCurrencySymbolForLocale = () => getCurrencySymbol(locale);
 
-  const getLocalizedPriceValue = (price: string | number): number => {
-    if (typeof price === "number" && price === 0) return 0;
-    const numPrice = typeof price === "string" ? parseFloat(price) : price;
-    return locale === "en" ? Math.round(numPrice * 0.85 * 100) / 100 : numPrice;
+  const getLocalizedPriceValue = (
+    price: number | { GBP: number; EUR: number }
+  ): number => {
+    return getPriceForLocale(price, locale);
   };
 
-  const getLocalizedPrice = (price: string | number) => {
-    if (typeof price === "number" && price === 0) {
+  const getLocalizedPrice = (price: number | { GBP: number; EUR: number }) => {
+    const priceValue = getPriceForLocale(price, locale);
+
+    if (priceValue === 0) {
       return locale === "en" ? "Free" : "Gratuit";
     }
 
-    const convertedPrice = getLocalizedPriceValue(price);
-    return `${getCurrencySymbol()}${convertedPrice}`;
+    return `${getCurrencySymbolForLocale()}${priceValue}`;
   };
 
   return (

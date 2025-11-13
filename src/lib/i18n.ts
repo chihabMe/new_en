@@ -1,3 +1,5 @@
+import { getCurrencySymbol } from "./currency";
+
 export const locales = ["en", "fr"] as const;
 export type Locale = (typeof locales)[number];
 
@@ -99,12 +101,12 @@ export const translations = {
 
     // WhatsApp Messages
     whatsappSubscription:
-      "Hello! I just subscribed to Flynix {planName} plan for {duration} at £{price}. My details: {fullName}, {email}, {phone}",
+      "Hello! I just subscribed to Flynix {planName} plan for {duration} at {currencySymbol}{price}. My details: {fullName}, {email}, {phone}",
     whatsappContact: "Hello! I have a question about Flynix. {message}",
 
     // Admin Messages
     adminNewSubscription:
-      "New subscription: {fullName} subscribed to {planName} ({duration}) for £{price}",
+      "New subscription: {fullName} subscribed to {planName} ({duration}) for {currencySymbol}{price}",
     adminNewContact: "New contact message from {fullName} ({email}): {message}",
 
     // FAQ
@@ -241,12 +243,12 @@ export const translations = {
 
     // WhatsApp Messages
     whatsappSubscription:
-      "Bonjour! Je viens de m'abonner au plan Flynix {planName} pour {duration} à {price}€. Mes détails: {fullName}, {email}, {phone}",
+      "Bonjour! Je viens de m'abonner au plan Flynix {planName} pour {duration} à {price}{currencySymbol}. Mes détails: {fullName}, {email}, {phone}",
     whatsappContact: "Bonjour! J'ai une question concernant Flynix. {message}",
 
     // Admin Messages
     adminNewSubscription:
-      "Nouvel abonnement: {fullName} s'est abonné à {planName} ({duration}) pour {price}€",
+      "Nouvel abonnement: {fullName} s'est abonné à {planName} ({duration}) pour {price}{currencySymbol}",
     adminNewContact:
       "Nouveau message de contact de {fullName} ({email}): {message}",
 

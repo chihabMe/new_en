@@ -26,6 +26,7 @@ import { PricingPlan } from "../sections/pricing/PricingSection";
 import { whatsupNumber } from "@/constants";
 import { subscribeActions } from "@/app/actoins/subscribe.actions";
 import { useLocale } from "@/hooks/useLocale";
+import { getCurrencySymbol } from "@/lib/currency";
 
 // TypeScript declaration for gtag
 declare global {
@@ -77,14 +78,13 @@ const SubscriptionModal = ({
     setIsSubmitting(true);
     setUserEmail(data.email);
 
-    const currencySymbol = locale === "en" ? "£" : "€";
-    const priceWithCurrency =
-      locale === "en" ? `${plan.price}` : `${plan.price}`;
+    const currencySymbol = getCurrencySymbol(locale);
 
     const message = t("whatsappSubscription", {
       planName: plan.name,
       duration: plan.period,
-      price: priceWithCurrency,
+      price: plan.price.toString(),
+      currencySymbol: currencySymbol,
       fullName: data.fullName,
       email: data.email,
       phone: data.phoneNumber,

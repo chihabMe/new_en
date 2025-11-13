@@ -7,6 +7,7 @@ import { getClientCountry } from "@/lib/ip-tools";
 import { revalidatePath } from "next/cache";
 import { WebhookService } from "@/lib/webhook";
 import { t } from "@/lib/i18n";
+import { getCurrencySymbol } from "@/lib/currency";
 
 // Function to create localized schema
 function createSubscribeSchema(locale: "en" | "fr") {
@@ -173,7 +174,7 @@ export const subscribeActions = publicActionsClient
         <ul>
           <li><strong>Forfait :</strong> ${planName}</li>
           <li><strong>Durée :</strong> ${duration}</li>
-          <li><strong>Prix :</strong> ${price} €</li>
+          <li><strong>Prix :</strong> ${price} ${getCurrencySymbol(locale)}</li>
         </ul>
       </div>
 
