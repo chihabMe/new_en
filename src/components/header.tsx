@@ -37,6 +37,26 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
+      {/* Top Banner with Pricing */}
+      <div className="bg-gradient-to-r from-green-600 to-green-500 text-white py-2.5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-center gap-6 text-sm font-medium">
+            <div className="flex items-center gap-2">
+              <span className="font-semibold">Standard:</span>
+              <span className="line-through opacity-80">$60</span>
+              <span className="text-xl font-bold">$52</span>
+              <span className="bg-white text-green-600 text-xs font-bold px-2 py-0.5 rounded-full ml-1">
+                SAVE $8
+              </span>
+            </div>
+            <div className="hidden sm:block w-px h-5 bg-white/40" />
+            <div className="flex items-center gap-2">
+              <span className="font-semibold">Premium:</span>
+              <span className="text-xl font-bold">$80</span>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}

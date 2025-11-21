@@ -3,10 +3,7 @@
     {
       "id": "Free-Trial",
       "name": "Free Trial",
-      "price": {
-        "GBP": 0,
-        "EUR": 0
-      },
+      "price": 0,
       "period": "1h ",
       "description": "Limited access for 1 hour",
       "features": [
@@ -24,10 +21,8 @@
     {
       "id": "Standard",
       "name": "Standard",
-      "price": {
-        "GBP": 39.99,
-        "EUR": 34.99
-      },
+      "price": 52,
+      "originalPrice": 60,
       "period": "12 months",
       "description": "12 months ",
       "features": [
@@ -46,10 +41,8 @@
     {
       "id": "premium-pricing",
       "name": "Premium",
-      "price": {
-        "GBP": 44.99,
-        "EUR": 49.99
-      },
+      "price": 80,
+      "originalPrice": 100,
       "period": "12 months",
       "description": "12 months ",
       "features": [

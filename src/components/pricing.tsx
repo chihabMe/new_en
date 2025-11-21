@@ -15,6 +15,7 @@ interface PricingPlan {
   id: string;
   name: string;
   price: number | { GBP: number; EUR: number };
+  originalPrice?: number;
   period: string;
   description: string;
   features: string[];
@@ -89,12 +90,38 @@ export default function Pricing() {
 
               <div className="mb-8">
                 <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-bold">
-                    {getLocalizedPrice(plan.price)}
-                  </span>
-                  <span className="text-muted-foreground">/{plan.period}</span>
-                </div>
+                {plan.originalPrice ? (
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-3">
+                      <span className="text-lg text-muted-foreground line-through">
+                        {getCurrencySymbolForLocale()}
+                        {plan.originalPrice}
+                      </span>
+                      <span className="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-pulse">
+                        SAVE $
+                        {plan.originalPrice -
+                          getLocalizedPriceValue(plan.price)}
+                      </span>
+                    </div>
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-5xl font-bold text-green-500">
+                        {getLocalizedPrice(plan.price)}
+                      </span>
+                      <span className="text-muted-foreground">
+                        /{plan.period}
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-4xl font-bold">
+                      {getLocalizedPrice(plan.price)}
+                    </span>
+                    <span className="text-muted-foreground">
+                      /{plan.period}
+                    </span>
+                  </div>
+                )}
               </div>
 
               <ul className="space-y-4 mb-8">

@@ -44,6 +44,44 @@ export default function Hero() {
               <p className="text-xl text-muted-foreground text-balance">
                 {t("heroSubtitle")}
               </p>
+
+              {/* Pricing Information */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                <div className="bg-gradient-to-br from-green-500/20 to-green-500/5 backdrop-blur-sm border-2 border-green-500 rounded-lg px-6 py-4 relative">
+                  <div className="absolute -top-3 -right-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse shadow-lg">
+                    SAVE $8
+                  </div>
+                  <div className="text-sm text-muted-foreground">Standard</div>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="text-lg text-muted-foreground line-through">
+                      $60
+                    </span>
+                    <span className="text-3xl font-bold text-green-400">
+                      $52
+                    </span>
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    12 months
+                  </div>
+                </div>
+                <div className="bg-gradient-to-br from-blue-500/20 to-blue-500/5 backdrop-blur-sm border-2 border-blue-500 rounded-lg px-6 py-4 relative">
+                  <div className="absolute -top-3 -right-3 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse shadow-lg">
+                    SAVE $20
+                  </div>
+                  <div className="text-sm text-blue-400 font-semibold">
+                    Premium
+                  </div>
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="text-lg text-muted-foreground line-through">
+                      $100
+                    </span>
+                    <span className="text-3xl font-bold text-blue-400">
+                      $80
+                    </span>
+                  </div>
+                  <div className="text-xs text-blue-300 mt-1">12 months</div>
+                </div>
+              </div>
             </div>
 
             {/* CTA Buttons */}
@@ -89,7 +127,7 @@ export default function Hero() {
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
                 <span className="text-sm text-muted-foreground font-medium">
-                  1 hour free
+                  7 days free
                 </span>
               </div>
               <div className="flex items-center gap-2">

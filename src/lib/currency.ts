@@ -1,34 +1,14 @@
 /**
  * Currency utilities for multi-locale support
- * English -> GBP (£), French -> EUR (€), default -> USD ($)
+ * All prices in USD ($)
  */
 
 export function getCurrencyForLocale(locale?: string): string {
-  if (!locale) return "USD";
-  const lang = locale.split("-")[0].toLowerCase();
-
-  switch (lang) {
-    case "en":
-      return "GBP"; // English -> UK currency
-    case "fr":
-      return "EUR"; // French -> Euro
-    default:
-      return "USD";
-  }
+  return "USD";
 }
 
 export function getCurrencySymbol(locale?: string): string {
-  const currency = getCurrencyForLocale(locale);
-
-  switch (currency) {
-    case "GBP":
-      return "£";
-    case "EUR":
-      return "€";
-    case "USD":
-    default:
-      return "$";
-  }
+  return "$";
 }
 
 export function formatCurrency(amount: number, locale?: string): string {
@@ -55,27 +35,17 @@ export function getLocaleForCurrency(currency: string): string {
 
 /**
  * Get the price for a specific locale from a price object
- * Supports both old format (number) and new format (object with GBP/EUR keys)
+ * All prices are now in USD
  */
 export function getPriceForLocale(
   price: number | { GBP: number; EUR: number },
   locale?: string
 ): number {
-  // Handle old format (just a number)
+  // Always return the number price (USD)
   if (typeof price === "number") {
     return price;
   }
 
-  // Handle new format (object with currency-specific prices)
-  const currency = getCurrencyForLocale(locale);
-
-  switch (currency) {
-    case "GBP":
-      return price.GBP;
-    case "EUR":
-      return price.EUR;
-    default:
-      // Fallback to EUR if currency not found
-      return price.EUR;
-  }
+  // Fallback for old format - not used anymore
+  return 0;
 }
